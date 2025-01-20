@@ -74,4 +74,17 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('background-music');
+    
+    const unmuteAndPlay = () => {
+        audio.muted = false;
+        audio.play().catch(err => console.warn( err));
+    };
+
+    audio.play().catch(() => {
+        document.addEventListener('click', unmuteAndPlay, { once: true });
+    });
+});
+
 animate();
